@@ -22,6 +22,8 @@ import com.fosun.tableObjects.*;
 
 import scala.Function1;
 
+import cc.shanruifeng.functions.card.*;
+
 /**
  * This is a sample class to launch a rule.
  */
@@ -33,6 +35,9 @@ public class DroolsTest {
 
 	public static final void main(String[] args) {
         try {
+        	// set windows compatible parameter
+        	System.setProperty("hadoop.home.dir", "D:\\Softwares\\hadoop");
+        	
         	// spark session
         	SparkConf conf = new SparkConf();
         	
@@ -41,14 +46,23 @@ public class DroolsTest {
         			.master("local[2]")
         			.appName("Drool Demo")
         			.config(conf)
+					.enableHiveSupport()
         			.getOrCreate();
         	
         	// configuration file
 //        	Config config = ConfigFactory.load("app.conf");
 //        	String path = config.getString("parquetPath");
         	
+        	// register UDF
+        	spark.sql("create temporary function id_card_sex as 'cc.shanruifeng.functions.card.UDFChinaIdCardGender'");
+        	
         	// get file
-			JavaRDD<Row> parFile = spark.read().csv("./src/main/resources/starM.csv").javaRDD();
+			Dataset<Row> rawdata = spark.read().csv("./src/main/resources/starM.csv");
+
+			// use UDF
+			rawdata.createOrReplaceTempView("starM");
+			Dataset<Row> udfModified = spark.sql("SELECT *, id_card_sex('652423195410291173') as id_sex FROM starM");
+			JavaRDD<Row> parFile = udfModified.javaRDD();
 			
             // go !         	
         	JavaRDD<CleanedPerson> resultRDD = parFile.mapPartitions(iterator->{
