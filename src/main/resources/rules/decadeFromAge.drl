@@ -4,7 +4,7 @@ import com.fosun.tableObjects.*;
 
  
 rule "decade < 14"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 0 && cleanedPerson.age < 14 && cleanedPerson.decade == null)
@@ -14,7 +14,7 @@ salience 10
 end
 
 rule "decade 15~18"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 15 && cleanedPerson.age < 18 && cleanedPerson.decade == null)
@@ -24,7 +24,7 @@ salience 10
 end
 
 rule "decade 19~24"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 19 && cleanedPerson.age < 24 && cleanedPerson.decade == null)
@@ -34,7 +34,7 @@ salience 10
 end
 
 rule "decade 25~29"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 25 && cleanedPerson.age < 29 && cleanedPerson.decade == null)
@@ -44,7 +44,7 @@ salience 10
 end
 
 rule "decade 30~35"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 30 && cleanedPerson.age < 35 && cleanedPerson.decade == null)
@@ -54,7 +54,7 @@ salience 10
 end
 
 rule "decade 36~39"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 36 && cleanedPerson.age < 39 && cleanedPerson.decade == null)
@@ -64,7 +64,7 @@ salience 10
 end
 
 rule "decade 40~44"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 40 && cleanedPerson.age < 44 && cleanedPerson.decade == null)
@@ -74,7 +74,7 @@ salience 10
 end
 
 rule "decade 45~50"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 45 && cleanedPerson.age < 50 && cleanedPerson.decade == null)
@@ -84,7 +84,7 @@ salience 10
 end
 
 rule "decade 51~54"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 51 && cleanedPerson.age < 54 && cleanedPerson.decade == null)
@@ -94,17 +94,17 @@ salience 10
 end
 
 rule "decade 55~59"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 51 && cleanedPerson.age < 59 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.age > 55 && cleanedPerson.age < 59 && cleanedPerson.decade == null)
     then
         m.cleanedPerson.decade = "55~59";
         update(m);
 end
 
 rule "decade 60~64"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 60 && cleanedPerson.age < 64 && cleanedPerson.decade == null)
@@ -114,7 +114,7 @@ salience 10
 end
 
 rule "decade > 65"
-ruleflow-group "Group3"	
+ruleflow-group "Group13"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.age > 65 && cleanedPerson.decade == null)

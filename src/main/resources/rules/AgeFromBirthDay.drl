@@ -4,7 +4,7 @@ import com.fosun.tableObjects.*;
 
  
 rule "age from birthday"
-ruleflow-group "Group2"	
+ruleflow-group "Group12"	
 salience 10
     when  	
         m: YongAn(cleanedPerson.birthDay != null && cleanedPerson.age == 0)

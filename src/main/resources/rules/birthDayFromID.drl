@@ -4,7 +4,7 @@ import com.fosun.tableObjects.*;
 
  
 rule "age 15 bits"
-ruleflow-group "Group1"	
+ruleflow-group "Group11"	
 salience 10
     when
         m : YongAn(certi_code.length == 15 && m.cleanedPerson.birthDay == null)
@@ -18,7 +18,7 @@ end
 
 
 rule "age 18 bits"
-ruleflow-group "Group1"	
+ruleflow-group "Group11"	
 salience 10
     when
         m : YongAn(certi_code.length == 18 && m.cleanedPerson.birthDay == null)

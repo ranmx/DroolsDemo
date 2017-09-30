@@ -7,6 +7,8 @@ public class CleanedPerson implements Serializable{
 	public String decade;
 	public String birthDay;
 	public String personID;
+	public String address;
+	public String gender;
 	
 	public CleanedPerson () {
 	}
@@ -14,6 +16,8 @@ public class CleanedPerson implements Serializable{
 	@Override
 	public String toString() {
 		return "CleanedPerson [age=" + age + ", decade=" + decade + ", birthDay=" + birthDay + ", personID=" + personID
+				+ ", address=" + address 
+				+ ", gender=" + gender
 				+ "]";
 	}
 }
