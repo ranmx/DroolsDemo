@@ -35,29 +35,38 @@ public class DroolsTest {
 
 	public static final void main(String[] args) {
         try {
-        	// set windows compatible parameter
-        	System.setProperty("hadoop.home.dir", "D:\\Softwares\\hadoop");
+//        	// set windows compatible parameter
+//        	System.setProperty("hadoop.home.dir", "D:\\Softwares\\hadoop");
         	
         	// spark session
         	SparkConf conf = new SparkConf();
         	
-        	SparkSession spark = SparkSession
-        			.builder()
-        			.master("local[2]")
-        			.appName("Drool Demo")
-        			.config(conf)
-					.enableHiveSupport()
-        			.getOrCreate();
+//        	SparkSession spark = SparkSession
+//        			.builder()
+//        			.master("local[2]")
+//        			.appName("Drool Demo")
+//        			.config(conf)
+//					.enableHiveSupport()
+//        			.getOrCreate();
+
+			SparkSession spark = SparkSession
+				.builder()
+				.appName("Drool Demo")
+				.config(conf)
+				.enableHiveSupport()
+				.getOrCreate();
         	
         	// configuration file
-//        	Config config = ConfigFactory.load("app.conf");
-//        	String path = config.getString("parquetPath");
+        	Config config = ConfigFactory.load("app.conf");
+        	String sourcePath = config.getString("sourcePath");
+        	String targetPath = config.getString("targetPath");
         	
         	// register UDF
         	spark.sql("create temporary function id_card_sex as 'cc.shanruifeng.functions.card.UDFChinaIdCardGender'");
         	
         	// get file
-			Dataset<Row> rawdata = spark.read().csv("./src/main/resources/starM.csv");
+			Dataset<Row> rawdata = spark.read().parquet(sourcePath);
+//        	Dataset<Row> rawdata = spark.read().csv("starM.csv");
 
 			// use UDF
 			rawdata.createOrReplaceTempView("starM");
@@ -85,7 +94,8 @@ public class DroolsTest {
         		return persons.iterator();
 				}
         	);
-        	resultRDD.collect().forEach(s -> System.out.println(s.toString()));
+        	Dataset cleanedPerDF = spark.createDataFrame(resultRDD, CleanedPerson.class);
+        	cleanedPerDF.write().mode("OverWrite").parquet(targetPath);
         			
         } catch (Throwable t) {
             t.printStackTrace();
