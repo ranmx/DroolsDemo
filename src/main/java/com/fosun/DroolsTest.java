@@ -23,16 +23,12 @@ import com.typesafe.config.ConfigFactory;
 
 import com.fosun.tableObjects.*;
 
-import scala.Function1;
 
 /**
  * This is a sample class to launch a rule.
  */
 public class DroolsTest {
 
-	public static Iterator<Row> ruleExecutor(Iterator<Row> iter) {
-	    	return iter;
-	    }
 
 	public static final void main(String[] args) {
         try {
@@ -47,11 +43,12 @@ public class DroolsTest {
         			.getOrCreate();
         	
         	// configuration file
-//        	Config config = ConfigFactory.load("app.conf");
-//        	String path = config.getString("parquetPath");
+			Config config = ConfigFactory.load("app.conf");
+			String sourcePath = config.getString("sourcePath");
+			String targetPath = config.getString("targetPath");
         	
         	// get file
-			JavaRDD<Row> parFile = spark.read().parquet("./src/main/resources/yongan.snappy.parquet").javaRDD();
+			JavaRDD<Row> parFile = spark.read().parquet(sourcePath).javaRDD();
 			
             // go !         	
         	JavaRDD<CleanedPerson> resultRDD = parFile.mapPartitions(iterator->{
@@ -61,7 +58,6 @@ public class DroolsTest {
             	KieSession kSession = kContainer.newKieSession("ksession-rules");
             	
         		List<CleanedPerson> persons = new ArrayList<>();
-        		List<Row> rows = new ArrayList<Row>();
         		while (iterator.hasNext()) {
         			Row row = iterator.next();
         			YongAn rawData = new YongAn(row);
@@ -75,18 +71,8 @@ public class DroolsTest {
 				}
         	);
 
-
-
-			Dataset<CleanedPerson> cleanedPerDF = spark.createDataset(resultRDD.rdd(), Encoders.bean(CleanedPerson.class));
-			Dataset<Row> cleanedPerDF2 = spark.createDataFrame(resultRDD, CleanedPerson.class);
-			System.out.println("------------------------------------------------");
-			cleanedPerDF.show();
-			System.out.println("------------------------------------------------");
-			cleanedPerDF2.show();
-			System.out.println("------------------------------------------------");
-			StructType mySchema = Encoders.bean(CleanedPerson.class).schema();
-			System.out.print(mySchema);
-        	resultRDD.collect().forEach(s -> System.out.println(s.toString()));
+			Dataset<Row> cleanedPerDF = spark.createDataFrame(resultRDD, CleanedPerson.class);
+			cleanedPerDF.repartition(1).write().mode("OverWrite").parquet(targetPath);
 
 
         } catch (Throwable t) {
