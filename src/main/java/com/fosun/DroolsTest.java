@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
+import org.apache.spark.sql.catalyst.ScalaReflection.Schema;
+import org.apache.spark.sql.types.StructType;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -14,6 +16,7 @@ import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.Row;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.sql.RowFactory;
+import org.apache.spark.sql.Encoders;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -48,7 +51,7 @@ public class DroolsTest {
 //        	String path = config.getString("parquetPath");
         	
         	// get file
-			JavaRDD<Row> parFile = spark.read().csv("./src/main/resources/starM.csv").javaRDD();
+			JavaRDD<Row> parFile = spark.read().parquet("./src/main/resources/yongan.snappy.parquet").javaRDD();
 			
             // go !         	
         	JavaRDD<CleanedPerson> resultRDD = parFile.mapPartitions(iterator->{
@@ -57,7 +60,7 @@ public class DroolsTest {
         	    KieContainer kContainer = ks.getKieClasspathContainer();
             	KieSession kSession = kContainer.newKieSession("ksession-rules");
             	
-        		List<CleanedPerson> persons = new ArrayList<CleanedPerson>();
+        		List<CleanedPerson> persons = new ArrayList<>();
         		List<Row> rows = new ArrayList<Row>();
         		while (iterator.hasNext()) {
         			Row row = iterator.next();
@@ -71,8 +74,21 @@ public class DroolsTest {
         		return persons.iterator();
 				}
         	);
+
+
+
+			Dataset<CleanedPerson> cleanedPerDF = spark.createDataset(resultRDD.rdd(), Encoders.bean(CleanedPerson.class));
+			Dataset<Row> cleanedPerDF2 = spark.createDataFrame(resultRDD, CleanedPerson.class);
+			System.out.println("------------------------------------------------");
+			cleanedPerDF.show();
+			System.out.println("------------------------------------------------");
+			cleanedPerDF2.show();
+			System.out.println("------------------------------------------------");
+			StructType mySchema = Encoders.bean(CleanedPerson.class).schema();
+			System.out.print(mySchema);
         	resultRDD.collect().forEach(s -> System.out.println(s.toString()));
-        			
+
+
         } catch (Throwable t) {
             t.printStackTrace();
         }

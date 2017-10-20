@@ -7,9 +7,9 @@ rule "decade < 14"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 0 && cleanedPerson.age < 14 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 0 && cleanedPerson.getAge() < 14 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "<14";
+        m.cleanedPerson.setDecade("<14");
         update(m);
 end
 
@@ -17,9 +17,9 @@ rule "decade 15~18"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 15 && cleanedPerson.age < 18 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 15 && cleanedPerson.getAge() < 18 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "15~18";
+        m.cleanedPerson.setDecade("15~18");
         update(m);
 end
 
@@ -27,9 +27,9 @@ rule "decade 19~24"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 19 && cleanedPerson.age < 24 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 19 && cleanedPerson.getAge() < 24 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "19~24";
+        m.cleanedPerson.setDecade("19~24");
         update(m);
 end
 
@@ -37,9 +37,9 @@ rule "decade 25~29"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 25 && cleanedPerson.age < 29 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 25 && cleanedPerson.getAge() < 29 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "25~29";
+        m.cleanedPerson.setDecade("25~29");
         update(m);
 end
 
@@ -47,9 +47,9 @@ rule "decade 30~35"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 30 && cleanedPerson.age < 35 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 30 && cleanedPerson.getAge() < 35 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "30~35";
+        m.cleanedPerson.setDecade("30~35");
         update(m);
 end
 
@@ -57,9 +57,9 @@ rule "decade 36~39"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 36 && cleanedPerson.age < 39 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 36 && cleanedPerson.getAge() < 39 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "36~39";
+        m.cleanedPerson.setDecade("36~39");
         update(m);
 end
 
@@ -67,9 +67,9 @@ rule "decade 40~44"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 40 && cleanedPerson.age < 44 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 40 && cleanedPerson.getAge() < 44 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "40~44";
+        m.cleanedPerson.setDecade("40~44");
         update(m);
 end
 
@@ -77,9 +77,9 @@ rule "decade 45~50"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 45 && cleanedPerson.age < 50 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 45 && cleanedPerson.getAge() < 50 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "45~50";
+        m.cleanedPerson.setDecade("45~50");
         update(m);
 end
 
@@ -87,9 +87,9 @@ rule "decade 51~54"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 51 && cleanedPerson.age < 54 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 51 && cleanedPerson.getAge() < 54 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "51~54";
+        m.cleanedPerson.setDecade("51~54");
         update(m);
 end
 
@@ -97,9 +97,9 @@ rule "decade 55~59"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 51 && cleanedPerson.age < 59 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 51 && cleanedPerson.getAge() < 59 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "55~59";
+        m.cleanedPerson.setDecade("55~59");
         update(m);
 end
 
@@ -107,9 +107,9 @@ rule "decade 60~64"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 60 && cleanedPerson.age < 64 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 60 && cleanedPerson.getAge() < 64 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = "60~64";
+        m.cleanedPerson.setDecade("60~64");
         update(m);
 end
 
@@ -117,8 +117,8 @@ rule "decade > 65"
 ruleflow-group "Group3"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.age > 65 && cleanedPerson.decade == null)
+        m: YongAn(cleanedPerson.getAge() > 65 && cleanedPerson.getDecade() == null)
     then
-        m.cleanedPerson.decade = ">65";
+        m.cleanedPerson.setDecade(">65");
         update(m);
 end

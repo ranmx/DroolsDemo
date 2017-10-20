@@ -7,8 +7,8 @@ rule "age from birthday"
 ruleflow-group "Group2"	
 salience 10
     when  	
-        m: YongAn(cleanedPerson.birthDay != null && cleanedPerson.age == 0)
+        m: YongAn(cleanedPerson.getBirthDay() != null && cleanedPerson.getAge() == 0)
     then
-        m.cleanedPerson.age = 2017 - Integer.parseInt(m.cleanedPerson.birthDay.split("-")[0]);
+        m.cleanedPerson.setAge(2017 - Integer.parseInt(m.cleanedPerson.getBirthDay().split("-")[0]));
         update(m);
 end
