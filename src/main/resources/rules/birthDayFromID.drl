@@ -7,12 +7,12 @@ rule "age 15 bits"
 ruleflow-group "Group11"	
 salience 10
     when
-        m : YongAn(certi_code.length == 15 && m.cleanedPerson.birthDay == null)
+        m : YongAn(certi_code.length == 15 && m.cleanedPerson.getBirthDay() == null)
     then
-    	m.cleanedPerson.personID = m.certi_code;
-        m.cleanedPerson.birthDay = "19" + m.certi_code.substring(6, 8) +
+    	m.cleanedPerson.setPersonID(m.certi_code);
+        m.cleanedPerson.setBirthDay("19" + m.certi_code.substring(6, 8) +
           "-" + m.certi_code.substring(8, 10) +
-          "-" + m.certi_code.substring(10, 12);
+          "-" + m.certi_code.substring(10, 12));
         update(m);
 end
 
@@ -21,11 +21,11 @@ rule "age 18 bits"
 ruleflow-group "Group11"	
 salience 10
     when
-        m : YongAn(certi_code.length == 18 && m.cleanedPerson.birthDay == null)
+        m : YongAn(certi_code.length == 18 && m.cleanedPerson.getBirthDay() == null)
     then
-   		m.cleanedPerson.personID = m.certi_code;
-        m.cleanedPerson.birthDay = m.certi_code.substring(6, 10) +
+   		m.cleanedPerson.setPersonID(m.certi_code);
+        m.cleanedPerson.setBirthDay(m.certi_code.substring(6, 10) +
           "-" + m.certi_code.substring(10, 12) +
-          "-" + m.certi_code.substring(12, 14);
+          "-" + m.certi_code.substring(12, 14));
         update(m);
 end
