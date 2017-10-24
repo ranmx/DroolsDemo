@@ -1,0 +1,27 @@
+//created on: 2017-10-24
+package com.fosun
+
+//list any import classes here.
+import com.fosun.tableObjects.*;
+import org.apache.hadoop.io.Text;
+import cc.shanruifeng.functions.card.*;
+
+//declare any global variables here
+
+rule "get gender from gender"
+ruleflow-group "Group11"
+salience 20
+    when
+        m : YongAn(gender != null && m.cleanedPerson.getGender() == null)
+    then
+        m.cleanedPerson.setGender(m.gender);
+end
+
+rule "get gender from id"
+ruleflow-group "Group12"
+salience 10
+    when
+        m : YongAn(gender == null && m.cleanedPerson.getPersonID() != null)
+    then
+        m.cleanedPerson.setGender(new UDFChinaIdCardGender().evaluate(new Text(m.cleanedPerson.getPersonID())).toString());
+end

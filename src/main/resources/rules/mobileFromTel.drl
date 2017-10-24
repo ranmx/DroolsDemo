@@ -1,0 +1,17 @@
+//created on: 2017-10-24
+package com.fosun
+
+//list any import classes here.
+
+import com.fosun.tableObjects.*;
+
+//declare any global variables here
+
+rule "get mobile if exists"
+ruleflow-group "Group11"
+
+    when
+         m : YongAn(tel != null && m.cleanedPerson.getMobile() == null)
+    then
+        m.cleanedPerson.setMobile(m.tel);
+end

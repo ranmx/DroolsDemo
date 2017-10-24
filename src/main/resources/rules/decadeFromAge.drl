@@ -59,7 +59,6 @@ salience 10
     when  	
         m: YongAn(cleanedPerson.getAge() >= 36 && cleanedPerson.getAge() < 40 && cleanedPerson.getDecade() == null)
     then
-        System.out.println(m.cleanedPerson.getAge());
         m.cleanedPerson.setDecade("36~39");
         update(m);
 end
