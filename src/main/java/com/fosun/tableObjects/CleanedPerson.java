@@ -47,8 +47,6 @@ public class CleanedPerson implements Serializable{
 	@Override
 	public String toString() {
 		return "CleanedPerson [age=" + age + ", decade=" + decade + ", birthDay=" + birthDay + ", personID=" + personID
-				+ ", address=" + address 
-				+ ", gender=" + gender
 				+ "]";
 	}
 }

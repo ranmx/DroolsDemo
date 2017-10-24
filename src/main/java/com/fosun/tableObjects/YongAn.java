@@ -33,7 +33,6 @@ public class YongAn implements Serializable{
 	public String fosun_create_date_day;
 	public String fosun_create_date;
 	public String fosunuuid;
-	public String id_sex;
 	
 	public CleanedPerson cleanedPerson = new CleanedPerson();
 	
@@ -68,7 +67,6 @@ public class YongAn implements Serializable{
 		this.fosun_create_date_day = row.get(24) == null ? null : row.get(24).toString();
 		this.fosun_create_date = row.get(25) == null ? null : row.get(25).toString();
 		this.fosunuuid = row.get(26) == null ? null : row.get(26).toString();
-		this.id_sex = row.get(27) == null ? null : row.get(27).toString();
 	}
 }
 
