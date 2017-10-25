@@ -22,6 +22,7 @@ ruleflow-group "Group12"
 salience 10
     when
         m : YongAn(gender == null && m.cleanedPerson.getPersonID() != null)
+        eval(new UDFChinaIdCardValid().evaluate(new Text(m.certi_code)).get())
     then
-        m.cleanedPerson.setGender(new UDFChinaIdCardGender().evaluate(new Text(m.cleanedPerson.getPersonID())).toString());
+        m.cleanedPerson.setGender(new UDFChinaIdCardGender().evaluate(new Text(m.certi_code)).toString());
 end

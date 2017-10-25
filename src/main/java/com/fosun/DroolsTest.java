@@ -42,18 +42,18 @@ public class DroolsTest {
         	// spark session
         	SparkConf conf = new SparkConf();
         	
-        	SparkSession spark = SparkSession
-        			.builder()
-        			.master("local[2]")
-        			.appName("Drool Demo")
-        			.config(conf)
-        			.getOrCreate();
+//        	SparkSession spark = SparkSession
+//        			.builder()
+//        			.master("local[2]")
+//        			.appName("Drool Demo")
+//        			.config(conf)
+//        			.getOrCreate();
 
-//			SparkSession spark = SparkSession
-//			.builder()
-//			.appName("Drool Demo")
-//			.config(conf)
-//			.getOrCreate();
+			SparkSession spark = SparkSession
+			.builder()
+			.appName("Drool Demo")
+			.config(conf)
+			.getOrCreate();
 
 			JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
         	
@@ -62,8 +62,8 @@ public class DroolsTest {
 			String sourcePath = config.getString("sourcePath");
 			String targetPath = config.getString("targetPath");
 
-			sourcePath = "D:\\Documents\\CODE\\DroolsDemo\\src\\main\\resources\\yongan.snappy.parquet";
-			targetPath = "D:\\Documents\\CODE\\DroolsDemo\\src\\main\\resources\\result";
+//			sourcePath = "D:\\Documents\\CODE\\DroolsDemo\\src\\main\\resources\\yongan.snappy.parquet";
+//			targetPath = "D:\\Documents\\CODE\\DroolsDemo\\src\\main\\resources\\result";
         	
         	// get file
 			JavaRDD<Row> parFile = spark.read().parquet(sourcePath).javaRDD();
@@ -93,7 +93,7 @@ public class DroolsTest {
 
 			Dataset<Row> cleanedPerDF = spark.createDataFrame(resultRDD, CleanedPerson.class);
 			cleanedPerDF.repartition(1).write().mode("OverWrite").parquet(targetPath);
-			cleanedPerDF.show();
+//			cleanedPerDF.show();
 
 
         } catch (Throwable t) {
