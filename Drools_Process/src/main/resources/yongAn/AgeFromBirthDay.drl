@@ -1,0 +1,15 @@
+package com.fosun.rules.YongAn
+
+import com.fosun.tableObjects.rawTables.*;
+
+ 
+rule "age from birthday"
+ruleflow-group "Group12"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getBirthDay() != null && getCleanedPerson().getBirthDay() != "Not Valid ID" && getCleanedPerson().getAge() == 0 )
+        
+    then
+        m.getCleanedPerson().setAge(2017 - Integer.parseInt(m.getCleanedPerson().getBirthDay().substring(0,4)));
+        update(m);
+end

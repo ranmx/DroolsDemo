@@ -1,0 +1,18 @@
+//created on: 2017-10-24
+package com.fosun.rules.YongAn
+
+//list any import classes here.
+
+import com.fosun.tableObjects.rawTables.*;
+
+//declare any global variables here
+
+rule "get home address if exists"
+ruleflow-group "Group11"
+
+    when
+         m : YongAn(address != null && m.getCleanedPerson().getHome_address() == null)
+    then
+        m.getCleanedPerson().setHome_address(m.address);
+end
+

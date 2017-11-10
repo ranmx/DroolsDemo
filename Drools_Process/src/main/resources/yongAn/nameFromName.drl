@@ -1,0 +1,17 @@
+//created on: 2017-10-24
+package com.fosun.rules.YongAn
+
+//list any import classes here.
+
+import com.fosun.tableObjects.rawTables.*;
+
+//declare any global variables here
+
+rule "get name if exists"
+ruleflow-group "Group11"
+
+    when
+        m : YongAn(name != null && m.getCleanedPerson().getReal_name() == null)
+    then
+        m.getCleanedPerson().setReal_name(m.name);
+end

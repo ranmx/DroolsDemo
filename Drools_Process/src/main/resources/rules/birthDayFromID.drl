@@ -1,0 +1,19 @@
+package com.fosun
+
+import com.fosun.tableObjects.rawTables.*;
+import cc.shanruifeng.functions.card.*;
+import org.apache.hadoop.io.Text;
+
+
+ 
+rule "age from id"
+ruleflow-group "Group11"	
+salience 20
+    when        
+        m : YongAn(certi_code.length != null && m.getCleanedPerson().getBirthDay() == null)
+        eval(new UDFChinaIdCardValid().evaluate(new Text(m.certi_code)).get())
+    then
+    	m.getCleanedPerson().setPersonID(m.certi_code);
+        m.getCleanedPerson().setBirthDay(new UDFChinaIdCardBirthday().evaluate(new Text(m.certi_code)).toString());
+        update(m);
+end

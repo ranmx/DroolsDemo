@@ -1,0 +1,28 @@
+//created on: 2017-10-24
+package com.fosun.rules.YongAn
+
+//list any import classes here.
+import com.fosun.tableObjects.rawTables.*;
+import org.apache.hadoop.io.Text;
+import cc.shanruifeng.functions.card.*;
+
+//declare any global variables here
+
+rule "get gender from gender"
+ruleflow-group "Group11"
+salience 20
+    when
+        m : YongAn(gender != null && m.getCleanedPerson().getGender() == null)
+    then
+        m.getCleanedPerson().setGender(m.gender);
+end
+
+rule "get gender from id"
+ruleflow-group "Group12"
+salience 10
+    when
+        m : YongAn(gender == null && m.getCleanedPerson().getPersonID() != null)
+        eval(new UDFChinaIdCardValid().evaluate(new Text(m.certi_code)).get())
+    then
+        m.getCleanedPerson().setGender(new UDFChinaIdCardGender().evaluate(new Text(m.certi_code)).toString());
+end

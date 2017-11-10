@@ -1,0 +1,124 @@
+package com.fosun
+
+import com.fosun.tableObjects.rawTables.*;
+
+ 
+rule "decade < 14"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() > 0 && getCleanedPerson().getAge() < 15 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("<14");
+        update(m);
+end
+
+rule "decade 15~18"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 15 && getCleanedPerson().getAge() < 19 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("15~18");
+        update(m);
+end
+
+rule "decade 19~24"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 19 && getCleanedPerson().getAge() < 25 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("19~24");
+        update(m);
+end
+
+rule "decade 25~29"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 25 && getCleanedPerson().getAge() < 30 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("25~29");
+        update(m);
+end
+
+rule "decade 30~35"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 30 && getCleanedPerson().getAge() < 36 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("30~35");
+        update(m);
+end
+
+rule "decade 36~39"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 36 && getCleanedPerson().getAge() < 40 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("36~39");
+        update(m);
+end
+
+rule "decade 40~44"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 40 && getCleanedPerson().getAge() < 45 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("40~44");
+        update(m);
+end
+
+rule "decade 45~50"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 45 && getCleanedPerson().getAge() < 51 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("45~50");
+        update(m);
+end
+
+rule "decade 51~54"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 51 && getCleanedPerson().getAge() < 55 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("51~54");
+        update(m);
+end
+
+rule "decade 55~59"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 55 && getCleanedPerson().getAge() < 60 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("55~59");
+        update(m);
+end
+
+rule "decade 60~64"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 60 && getCleanedPerson().getAge() < 65 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade("60~64");
+        update(m);
+end
+
+rule "decade > 65"
+ruleflow-group "Group13"	
+salience 10
+    when  	
+        m: YongAn(getCleanedPerson().getAge() >= 65 && getCleanedPerson().getDecade() == null)
+    then
+        m.getCleanedPerson().setDecade(">65");
+        update(m);
+end

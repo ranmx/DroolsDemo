@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="YongAnProcess" name="YongAn" tns:packageName="com.fosun.rules.YongAn" >
+
+    <!-- nodes -->
+    <startEvent id="2fbce0e8-575a-4036-a126-7640e4fb68ca" name="Start"  isInterrupting="false">
+    </startEvent>
+    <businessRuleTask id="3323b2cf-f149-493e-8313-c2c4f87aa4a6" name="Stage1" g:ruleFlowGroup="Group11" 
+ implementation="http://www.jboss.org/drools/rule" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="6d4d3984-b3de-4c4a-a5eb-0da86e60c990" name="Stage2" g:ruleFlowGroup="Group12" 
+ implementation="http://www.jboss.org/drools/rule" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="6727798e-9e81-45d3-a320-e7d8fce356a3" name="Stage3" g:ruleFlowGroup="Group13" 
+ implementation="http://www.jboss.org/drools/rule" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <endEvent id="bd8eb965-8c64-4103-99b1-b115d74cda56" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="2fbce0e8-575a-4036-a126-7640e4fb68ca-3323b2cf-f149-493e-8313-c2c4f87aa4a6" sourceRef="2fbce0e8-575a-4036-a126-7640e4fb68ca" targetRef="3323b2cf-f149-493e-8313-c2c4f87aa4a6" />
+    <sequenceFlow id="3323b2cf-f149-493e-8313-c2c4f87aa4a6-6d4d3984-b3de-4c4a-a5eb-0da86e60c990" sourceRef="3323b2cf-f149-493e-8313-c2c4f87aa4a6" targetRef="6d4d3984-b3de-4c4a-a5eb-0da86e60c990" />
+    <sequenceFlow id="6d4d3984-b3de-4c4a-a5eb-0da86e60c990-6727798e-9e81-45d3-a320-e7d8fce356a3" sourceRef="6d4d3984-b3de-4c4a-a5eb-0da86e60c990" targetRef="6727798e-9e81-45d3-a320-e7d8fce356a3" />
+    <sequenceFlow id="6727798e-9e81-45d3-a320-e7d8fce356a3-bd8eb965-8c64-4103-99b1-b115d74cda56" sourceRef="6727798e-9e81-45d3-a320-e7d8fce356a3" targetRef="bd8eb965-8c64-4103-99b1-b115d74cda56" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="YongAnProcess" >
+      <bpmndi:BPMNShape bpmnElement="2fbce0e8-575a-4036-a126-7640e4fb68ca" >
+        <dc:Bounds x="100" y="100" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="3323b2cf-f149-493e-8313-c2c4f87aa4a6" >
+        <dc:Bounds x="191" y="94" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="6d4d3984-b3de-4c4a-a5eb-0da86e60c990" >
+        <dc:Bounds x="333" y="91" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="6727798e-9e81-45d3-a320-e7d8fce356a3" >
+        <dc:Bounds x="494" y="95" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="bd8eb965-8c64-4103-99b1-b115d74cda56" >
+        <dc:Bounds x="638" y="98" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="2fbce0e8-575a-4036-a126-7640e4fb68ca-3323b2cf-f149-493e-8313-c2c4f87aa4a6" >
+        <di:waypoint x="124" y="124" />
+        <di:waypoint x="231" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="3323b2cf-f149-493e-8313-c2c4f87aa4a6-6d4d3984-b3de-4c4a-a5eb-0da86e60c990" >
+        <di:waypoint x="231" y="118" />
+        <di:waypoint x="373" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="6d4d3984-b3de-4c4a-a5eb-0da86e60c990-6727798e-9e81-45d3-a320-e7d8fce356a3" >
+        <di:waypoint x="373" y="115" />
+        <di:waypoint x="534" y="119" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="6727798e-9e81-45d3-a320-e7d8fce356a3-bd8eb965-8c64-4103-99b1-b115d74cda56" >
+        <di:waypoint x="534" y="119" />
+        <di:waypoint x="662" y="122" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
