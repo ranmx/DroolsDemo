@@ -1,0 +1,17 @@
+//created on: 2017-10-24
+package com.fosun
+
+//list any import classes here.
+
+import com.fosun.tableObjects.*;
+
+//declare any global variables here
+
+rule "get uuid"
+ruleflow-group "Group11"
+
+    when
+         m : YongAn(fosunuuid.length != null && m.cleanedPerson.getFosunuuid() == null)
+    then
+        m.cleanedPerson.setFosunuuid(m.fosunuuid);
+end

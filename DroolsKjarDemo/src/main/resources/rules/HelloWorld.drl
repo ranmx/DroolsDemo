@@ -1,0 +1,32 @@
+//created on: 2017-11-8
+package com.fosun.fonova.test.rules.demo
+
+import com.fosun.fonova.test.*
+
+rule "bigger"
+
+    when
+        m : TestNumber(number > 30)
+    then
+        System.out.println("Bigger than rule number");
+
+end
+
+rule "smaller"
+
+    when
+        m : TestNumber(number < 30)
+    then
+        System.out.println("smaller than rule number");
+
+end
+
+rule "equals"
+
+    when
+        m : TestNumber(number == 30)
+    then
+        System.out.println("equals to rule number");
+
+end
+
